@@ -36,6 +36,14 @@ func (g Gorilla) Banana() string {
 }
 
 func main() {
+	// 1. intを初期化 = 0
+	// 2. メモリ上のアドレスをipに代入する
+	var ip = new(int)
+	fmt.Println(*ip)
+
+	*ip = 4
+	fmt.Println(*ip)
+
 	g := Gorilla{Name: "John"}
 	g.SetName("Paul")
 	fmt.Println(g.Name)
