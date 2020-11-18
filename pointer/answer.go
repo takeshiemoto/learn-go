@@ -2,47 +2,50 @@ package main
 
 import "fmt"
 
+// メモリは区分けされている
+// 部屋がある
+// 部屋には大きさがある
+// 家具は無限に入れられない
+// メモリも物理的な容量は決まっている
+// OSがよしなにやっている
+// アドレス = 住所
+// マンションに例える
+// たくさんの部屋がある
+// 部屋番号がアドレス
+// ポインタを使うと、メモリアドレス上の値を書き換えられる！
+
 func main() {
-	answer := 42
-	fmt.Println(&answer)
+	var i int
+	// Intのポインタ型を宣言
+	// int型とは別物。代入不可
+	// ポインタ型のnil。int型は0が入る。stringは空文字。
+	var ip *int
+	fmt.Println(i, ip) // 0 <nil>
 
-	address := &answer
-	// アドレスから値を参照する
-	fmt.Println(*address)
+	// 注意
+	// nilのポインタに操作をするとPanic
 
-	fmt.Println(*&answer) //42
+	// 変数からポインタを取得する
+	// アンパサンドを使う
+	ip = &i         // 変数から部屋番号を除く
+	fmt.Println(ip) // 0xc0000b2008
 
-	fmt.Printf("addressの型は %T です\n", address) //addressの型は *int です
+	// ポインタから値を取得する
+	fmt.Println(*ip) // 0
 
-	var manager *string
-	oh := "王貞治"
+	// 変数にアスタリスクをつける場合と
+	// 型にアスタリスクを付ける場合では挙動に違いあり
 
-	manager = &oh
+	// 型にアスタリスク
+	// int型のポインタを宣言
+	// var ip2 *int
+	// 変数にアスタリスク
+	fmt.Println(*ip) // ポインタ変数の値を取得
 
-	fmt.Println(*manager) // 王貞治
+	var ip3 = new(int)
+	fmt.Println(*ip3)
 
-	akiyama := "秋山幸二"
-	manager = &akiyama
-
-	fmt.Println(*manager) // 秋山幸二
-
-	// akiyamaをkudoに変更すると...?
-	akiyama = "工藤公康"
-
-	fmt.Println(*manager) // 工藤公康
-
-	// managerをデリファレンスして直接書き換えると...?
-	*manager = "城島健司"
-	fmt.Println(akiyama) // 城島健司!?
-
-	mrHawks := manager
-	*mrHawks = "小久保裕紀"
-	fmt.Println(akiyama) // 小久保裕紀???
-
-	// mrHawksはmanagerと同じメモリアドレス
-	fmt.Println(manager == mrHawks) // true
-
-	saito := "斉藤和巳"
-	manager = &saito                // managerにsaitoの参照を入れる
-	fmt.Println(manager == mrHawks) // false
+	*ip3 = 12
+	fmt.Println(ip3)
+	fmt.Println(*ip3)
 }
