@@ -23,6 +23,9 @@ func main() {
 	fmt.Println("name\tsize")
 	for _, item := range items {
 		name := item.Name()
+		if item.IsDir() {
+			name += "/"
+		}
 		if strings.HasPrefix(name, ".") {
 			// 構造体を複合
 			if *showAll {
