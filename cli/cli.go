@@ -1,13 +1,19 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
 )
 
 func main() {
-	items, err := ioutil.ReadDir(".")
+	flag.Parse()
+	dir := "."
+	if len(flag.Args()) > 0 {
+		dir = flag.Args()[0]
+	}
+	items, err := ioutil.ReadDir(dir)
 	if err != nil {
 		log.Fatal(err)
 	}
