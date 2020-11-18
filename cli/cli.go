@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strings"
 )
 
 func main() {
+	// flag.BoolはBoolの構造体を返す
+	showAll := flag.Bool("a", false, "all files")
 	flag.Parse()
 	dir := "."
 	if len(flag.Args()) > 0 {
@@ -19,6 +22,16 @@ func main() {
 	}
 	fmt.Println("name\tsize")
 	for _, item := range items {
+		name := item.Name()
+		if strings.HasPrefix(name, ".") {
+			// 構造体を複合
+			if *showAll {
+				println(name)
+				continue
+			}
+			continue
+		}
+
 		fmt.Printf("%s\t%d\n", item.Name(), item.Size())
 	}
 }
