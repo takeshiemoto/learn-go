@@ -12,5 +12,4 @@ func main() {
 	const n2 = 100000000000000000 / 100000000000000000
 	var m2 = n2 // 1
 	fmt.Println(m2)
-
 }
