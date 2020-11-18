@@ -34,7 +34,6 @@ func main() {
 			}
 			continue
 		}
-
 		fmt.Printf("%s\t%d\n", item.Name(), item.Size())
 	}
 }
