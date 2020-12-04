@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -61,6 +62,12 @@ func main() {
 			LastName:  "Waters",
 		},
 	}
+
+	bytes, err := json.Marshal(floyd)
+	if err != nil {
+		fmt.Printf("%+v\n", string(bytes))
+	}
+
 	fmt.Printf("%+v\n", floyd)
 
 }
