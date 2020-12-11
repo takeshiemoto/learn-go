@@ -3,20 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	temperature := map[string]int{
-		"Earth": 15,
-		"Mars":  -65,
+
+	// 重複のあるint型のスライス
+	numbers := []int{1, 3, 3, 5, 3, 2, 3, 2}
+
+	// ブール値を値に持つMapを作成
+	set := make(map[int]bool)
+
+	for _, n := range numbers {
+		// 同一のキーは存在できない為
+		set[n] = true
 	}
 
-	temp := temperature["Earth"]
-	fmt.Println(temp)
+	fmt.Println(set)
 
-	temperature["Earth"] = 16
-	fmt.Println(temperature)
-
-	if moon, ok := temperature["Moon"]; ok {
-		fmt.Println(moon)
-	} else {
-		fmt.Println("?")
+	// Mapは順序が任意なのでスライスに戻す
+	unique := make([]int, 0, len(set))
+	for n2 := range set {
+		unique = append(unique, n2)
 	}
+
+	fmt.Println(unique)
 }
